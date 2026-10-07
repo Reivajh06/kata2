@@ -7,5 +7,7 @@ public class Kata2 {
 	static void main() {
 		MobLoader mobLoader = new MobLoader(new File("src/main/resources/Mobs.csv"));
 		mobLoader.extractMobs();
+
+		System.out.println(mobLoader.extractMobs());
 	}
 }

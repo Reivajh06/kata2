@@ -16,7 +16,8 @@ public enum ReproductiveRequirement {
 	BAMBOO,
 	CARROT,
 	WARPED_FUNGUS,
-	SEA_GRASS,
+	SEAGRASS,
 	BED,
-	BEEF
+	BEEF,
+	NONE
 }
