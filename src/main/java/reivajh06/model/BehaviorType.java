@@ -1,4 +1,4 @@
-package reivajh06;
+package reivajh06.model;
 
 public enum BehaviorType {
 
