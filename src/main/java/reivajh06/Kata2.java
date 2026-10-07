@@ -1,13 +1,21 @@
 package reivajh06;
 
+import reivajh06.loaders.FileCSVLoader;
+import reivajh06.loaders.MobLoader;
+import reivajh06.model.Mob;
+
 import java.io.File;
+import java.util.List;
 
 public class Kata2 {
 
 	static void main() {
-		FileMobLoader mobLoader = new FileMobLoader(new File("src/main/resources/Mobs.csv"));
-		MobStatistics mobStatistics = new MobStatistics(mobLoader.extractMobs());
+		MobLoader mobLoader = new FileCSVLoader(new File("src/main/resources/minecraft_mobs.csv"));
+		List<String> lines = mobLoader.load();
+		MobParser parser = new MobParser();
+		List<Mob> mobs = parser.parseAllLines(lines);
+		MobStatistics statistics = new MobStatistics(mobs);
 
-		System.out.println(mobStatistics.groupBySpawnBehavior());
+		System.out.println(statistics.groupBySpawnBehavior());
 	}
 }
