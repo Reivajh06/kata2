@@ -12,11 +12,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MobStatistics {
+public class MobsAnalyzer {
 
 	private final List<Mob> mobs;
 
-	public MobStatistics(List<Mob> mobs) {
+	public MobsAnalyzer(List<Mob> mobs) {
 		this.mobs = mobs;
 	}
 

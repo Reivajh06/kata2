@@ -6,18 +6,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileCSVLoader implements MobLoader {
+public class FileCSVMobLoader implements MobLoader {
 
 	private static final int EOF = -1;
 
 	private final File source;
 
-	public FileCSVLoader(File source) {
+	public FileCSVMobLoader(File source) {
 		this.source = source;
 	}
 
 	@Override
-	public List<String> load() {
+	public List<String> loadCsv() {
 		List<String> lines = new ArrayList<>();
 
 		try(var inputStream = new FileInputStream(source)) {
