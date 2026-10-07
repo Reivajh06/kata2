@@ -3,6 +3,7 @@ package reivajh06;
 import reivajh06.model.BehaviorType;
 import reivajh06.model.Mob;
 import reivajh06.model.ReproductiveRequirement;
+import reivajh06.model.SpawnBehavior;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -17,6 +18,34 @@ public class MobStatistics {
 
 	public MobStatistics(List<Mob> mobs) {
 		this.mobs = mobs;
+	}
+
+	public List<String> mobsByBehavior(BehaviorType behavior) {
+		return mobs.stream()
+				.filter(m -> m.behaviorType().equals(behavior))
+				.map(Mob::name)
+				.toList();
+	}
+
+	public List<String> mobsBySpawnBehavior(SpawnBehavior spawnBehavior) {
+		return mobs.stream()
+				.filter(m -> m.spawnBehavior().equals(spawnBehavior))
+				.map(Mob::name)
+				.toList();
+	}
+
+	public List<String> mobsByReproductiveRequirement(ReproductiveRequirement reproductiveRequirement) {
+		return mobs.stream()
+				.filter(m -> m.reproductiveRequirement().equals(reproductiveRequirement))
+				.map(Mob::name)
+				.toList();
+	}
+
+	public List<String> mobsByVersion(String version) {
+		return mobs.stream()
+				.filter(m -> m.version().equals(version))
+				.map(Mob::name)
+				.toList();
 	}
 
 	public Map<BehaviorType, List<String>> groupByBehavior() {
@@ -49,7 +78,7 @@ public class MobStatistics {
 		Map<String, List<String>> groups = new HashMap<>();
 
 		for(Mob mob : mobs) {
-			String version = mob.minecraftVersion();
+			String version = mob.version();
 
 			groups.computeIfAbsent(version, _ -> new ArrayList<>());
 			groups.get(version).add(mob.name());
@@ -66,6 +95,19 @@ public class MobStatistics {
 
 			groups.computeIfAbsent(reproductiveRequirement, _ -> new ArrayList<>());
 			groups.get(reproductiveRequirement).add(mob.name());
+		}
+
+		return groups;
+	}
+
+	public Map<SpawnBehavior, List<String>> groupBySpawnBehavior() {
+		Map<SpawnBehavior, List<String>> groups = new HashMap<>();
+
+		for(Mob mob : mobs) {
+			SpawnBehavior spawnBehavior = mob.spawnBehavior();
+
+			groups.computeIfAbsent(spawnBehavior, _ -> new ArrayList<>());
+			groups.get(spawnBehavior).add(mob.name());
 		}
 
 		return groups;

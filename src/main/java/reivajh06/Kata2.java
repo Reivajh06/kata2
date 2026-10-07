@@ -8,9 +8,6 @@ public class Kata2 {
 		FileMobLoader mobLoader = new FileMobLoader(new File("src/main/resources/Mobs.csv"));
 		MobStatistics mobStatistics = new MobStatistics(mobLoader.extractMobs());
 
-		System.out.println(mobStatistics.groupByBehavior());
-		System.out.println(mobStatistics.groupByDebutYear());
-		System.out.println(mobStatistics.groupByVersion());
-		System.out.println(mobStatistics.groupByReproductiveRequirement());
+		System.out.println(mobStatistics.groupBySpawnBehavior());
 	}
 }

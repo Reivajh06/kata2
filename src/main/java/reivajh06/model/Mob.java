@@ -10,7 +10,7 @@ public record Mob(
 		int healthPoints,
 		int maxDamage,
 		LocalDate debutDate,
-		String minecraftVersion,
+		String version,
 		ReproductiveRequirement reproductiveRequirement
 ) {
 }
