@@ -11,5 +11,6 @@ public class Kata2 {
 		System.out.println(mobStatistics.groupByBehavior());
 		System.out.println(mobStatistics.groupByDebutYear());
 		System.out.println(mobStatistics.groupByVersion());
+		System.out.println(mobStatistics.groupByReproductiveRequirement());
 	}
 }

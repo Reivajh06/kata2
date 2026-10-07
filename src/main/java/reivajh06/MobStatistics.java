@@ -2,6 +2,7 @@ package reivajh06;
 
 import reivajh06.model.BehaviorType;
 import reivajh06.model.Mob;
+import reivajh06.model.ReproductiveRequirement;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -52,6 +53,19 @@ public class MobStatistics {
 
 			groups.computeIfAbsent(version, _ -> new ArrayList<>());
 			groups.get(version).add(mob.name());
+		}
+
+		return groups;
+	}
+
+	public Map<ReproductiveRequirement, List<String>> groupByReproductiveRequirement() {
+		Map<ReproductiveRequirement, List<String>> groups = new HashMap<>();
+
+		for(Mob mob : mobs) {
+			ReproductiveRequirement reproductiveRequirement = mob.reproductiveRequirement();
+
+			groups.computeIfAbsent(reproductiveRequirement, _ -> new ArrayList<>());
+			groups.get(reproductiveRequirement).add(mob.name());
 		}
 
 		return groups;
