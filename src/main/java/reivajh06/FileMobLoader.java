@@ -13,13 +13,13 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MobLoader {
+public class FileMobLoader {
 
 	private static final int EOF = -1;
 
 	private final File source;
 
-	public MobLoader(File source) {
+	public FileMobLoader(File source) {
 		this.source = source;
 	}
 
@@ -66,16 +66,20 @@ public class MobLoader {
 		String[] mobDetails = line.split(",");
 
 		int id = Integer.parseInt(mobDetails[0]);
+
 		String name = mobDetails[1].trim();
 		BehaviorType behaviorType = BehaviorType.valueOf(mobDetails[2].trim().replace(" ", "_").toUpperCase());
 		SpawnBehavior spawnBehavior = SpawnBehavior.valueOf(mobDetails[3].trim().replace(" ", "_").toUpperCase());
+
 		int healthPoints = Integer.parseInt(mobDetails[4].trim());
 		int maxDamage = mobDetails[5].isBlank() ? 0 : Integer.parseInt(mobDetails[5].trim());
 
 		String[] date = mobDetails[6].substring(0, 10).split("-");
 
 		LocalDate debutDate = LocalDate.of(Integer.parseInt(date[0]), Month.of(Integer.parseInt(date[1])), Integer.parseInt(date[2]));
+
 		String version = mobDetails[7].trim();
+
 		ReproductiveRequirement reproductiveRequirement = mobDetails.length == 8 || mobDetails[8].isBlank() ?
 				ReproductiveRequirement.NONE
 				: ReproductiveRequirement.valueOf(mobDetails[8].trim().replace(" ", "_").toUpperCase());
