@@ -1,6 +1,6 @@
 package reivajh06;
 
-public enum BehaviorTypes {
+public enum BehaviorType {
 
 	PEACEFUL,
 	HOSTILE,
