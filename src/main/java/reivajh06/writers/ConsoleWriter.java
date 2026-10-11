@@ -17,7 +17,8 @@ public class ConsoleWriter implements MobWriter {
 
 	@Override
 	public void write(byte[] bytes) {
-		try(OutputStream outputStream = System.out) {
+		try {
+			OutputStream outputStream = System.out;
 			outputStream.write(bytes);
 
 		} catch(IOException e) {

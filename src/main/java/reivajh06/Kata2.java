@@ -14,8 +14,9 @@ public class Kata2 {
 	static void main() {
 		MobLoader mobLoader = new FileCSVMobLoader(new File("src/main/resources/minecraft_mobs.csv"));
 		List<String> lines = mobLoader.loadCsv();
-		System.out.println(lines.size());
+		System.out.println(lines);
 		MobParser parser = new MobParser(',');
+
 		List<Mob> mobs = parser.parseAllLines(lines);
 		MobsAnalyzer statistics = new MobsAnalyzer(mobs);
 
@@ -23,6 +24,6 @@ public class Kata2 {
 
 		MobWriter mobWriter = new ConsoleWriter();
 
-		mobWriter.write(x);
+		mobWriter.write(mobs);
 	}
 }
