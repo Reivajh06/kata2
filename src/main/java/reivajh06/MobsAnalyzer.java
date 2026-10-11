@@ -1,17 +1,13 @@
 package reivajh06;
 
-import reivajh06.model.BehaviorType;
 import reivajh06.model.Mob;
-import reivajh06.model.ReproductiveRequirement;
-import reivajh06.model.SpawnBehavior;
 
-import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class MobsAnalyzer {
@@ -33,30 +29,9 @@ public class MobsAnalyzer {
 		return groups;
 	}
 
-	public List<String> mobsByBehavior(BehaviorType behavior) {
+	public List<String> filterMobs(Predicate<Mob> mobFilter) {
 		return mobs.stream()
-				.filter(m -> m.behaviorType().equals(behavior))
-				.map(Mob::name)
-				.toList();
-	}
-
-	public List<String> mobsBySpawnBehavior(SpawnBehavior spawnBehavior) {
-		return mobs.stream()
-				.filter(m -> m.spawnBehavior().equals(spawnBehavior))
-				.map(Mob::name)
-				.toList();
-	}
-
-	public List<String> mobsByReproductiveRequirement(ReproductiveRequirement reproductiveRequirement) {
-		return mobs.stream()
-				.filter(m -> m.reproductiveRequirement().equals(reproductiveRequirement))
-				.map(Mob::name)
-				.toList();
-	}
-
-	public List<String> mobsByVersion(String version) {
-		return mobs.stream()
-				.filter(m -> m.version().equals(version))
+				.filter(mobFilter)
 				.map(Mob::name)
 				.toList();
 	}

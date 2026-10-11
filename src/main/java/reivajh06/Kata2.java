@@ -19,9 +19,7 @@ public class Kata2 {
 		List<Mob> mobs = parser.parseAllLines(lines);
 		MobsAnalyzer statistics = new MobsAnalyzer(mobs);
 
-		Map<BehaviorType, List<String>> x = statistics.groupByBehavior();
+		var x = statistics.filterMobs(mob -> mob.debutDate().getYear() == 2011);
 		System.out.println(x);
-		System.out.println(statistics.groupFrecuencies(x));
-		System.out.println(statistics.groupBy(Mob::reproductiveRequirement));
 	}
 }
