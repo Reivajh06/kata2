@@ -36,7 +36,7 @@ public class MobsAnalyzer {
 				.toList();
 	}
 
-	public <T> Map<T, Integer> groupFrecuencies(Map<T, List<String>> group) {
+	public <T> Map<T, Integer> groupFrequencies(Map<T, List<String>> group) {
 		return group.entrySet().stream()
 				.map(e -> Map.entry(e.getKey(), e.getValue().size()))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));

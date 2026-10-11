@@ -2,12 +2,12 @@ package reivajh06;
 
 import reivajh06.loaders.FileCSVMobLoader;
 import reivajh06.loaders.MobLoader;
-import reivajh06.model.BehaviorType;
 import reivajh06.model.Mob;
+import reivajh06.writers.ConsoleWriter;
+import reivajh06.writers.MobWriter;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 public class Kata2 {
 
@@ -20,6 +20,9 @@ public class Kata2 {
 		MobsAnalyzer statistics = new MobsAnalyzer(mobs);
 
 		var x = statistics.filterMobs(mob -> mob.debutDate().getYear() == 2011);
-		System.out.println(x);
+
+		MobWriter mobWriter = new ConsoleWriter();
+
+		mobWriter.write(x);
 	}
 }
