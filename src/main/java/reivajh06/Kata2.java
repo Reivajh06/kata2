@@ -2,10 +2,12 @@ package reivajh06;
 
 import reivajh06.loaders.FileCSVMobLoader;
 import reivajh06.loaders.MobLoader;
+import reivajh06.model.BehaviorType;
 import reivajh06.model.Mob;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 public class Kata2 {
 
@@ -13,10 +15,13 @@ public class Kata2 {
 		MobLoader mobLoader = new FileCSVMobLoader(new File("src/main/resources/minecraft_mobs.csv"));
 		List<String> lines = mobLoader.loadCsv();
 		System.out.println(lines.size());
-		MobParser parser = new MobParser();
+		MobParser parser = new MobParser(',');
 		List<Mob> mobs = parser.parseAllLines(lines);
 		MobsAnalyzer statistics = new MobsAnalyzer(mobs);
 
-		System.out.println(statistics.groupBySpawnBehavior());
+		Map<BehaviorType, List<String>> x = statistics.groupByBehavior();
+		System.out.println(x);
+		System.out.println(statistics.groupFrecuencies(x));
+		System.out.println(statistics.groupBy(Mob::reproductiveRequirement));
 	}
 }

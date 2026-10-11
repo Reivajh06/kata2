@@ -3,7 +3,7 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\src\main\resources\Mobs.csv">
+        <entry key="\src\main\resources\minecraft_mobs.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

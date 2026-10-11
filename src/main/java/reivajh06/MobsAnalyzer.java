@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class MobsAnalyzer {
 
@@ -18,6 +20,17 @@ public class MobsAnalyzer {
 
 	public MobsAnalyzer(List<Mob> mobs) {
 		this.mobs = mobs;
+	}
+
+	public <K> Map<K, List<String>> groupBy(Function<Mob, K> mobDetail) {
+		Map<K, List<String>> groups = new HashMap<>();
+
+		for(Mob mob : mobs) {
+			groups.computeIfAbsent(mobDetail.apply(mob), _ -> new ArrayList<>());
+			groups.get(mobDetail.apply(mob)).add(mob.name());
+		}
+
+		return groups;
 	}
 
 	public List<String> mobsByBehavior(BehaviorType behavior) {
@@ -48,68 +61,9 @@ public class MobsAnalyzer {
 				.toList();
 	}
 
-	public Map<BehaviorType, List<String>> groupByBehavior() {
-		Map<BehaviorType, List<String>> groups = new HashMap<>();
-
-		for(Mob mob : mobs) {
-			BehaviorType behavior = mob.behaviorType();
-
-			groups.computeIfAbsent(behavior, _ -> new ArrayList<>());
-			groups.get(behavior).add(mob.name());
-		}
-
-		return groups;
-	}
-
-	public Map<Year, List<String>> groupByDebutYear() {
-		Map<Year, List<String>> groups = new HashMap<>();
-
-		for(Mob mob : mobs) {
-			LocalDate debutDate = mob.debutDate();
-
-			groups.computeIfAbsent(Year.of(debutDate.getYear()), _ -> new ArrayList<>());
-			groups.get(Year.of(debutDate.getYear())).add(mob.name());
-		}
-
-		return groups;
-	}
-
-	public Map<String, List<String>> groupByVersion() {
-		Map<String, List<String>> groups = new HashMap<>();
-
-		for(Mob mob : mobs) {
-			String version = mob.version();
-
-			groups.computeIfAbsent(version, _ -> new ArrayList<>());
-			groups.get(version).add(mob.name());
-		}
-
-		return groups;
-	}
-
-	public Map<ReproductiveRequirement, List<String>> groupByReproductiveRequirement() {
-		Map<ReproductiveRequirement, List<String>> groups = new HashMap<>();
-
-		for(Mob mob : mobs) {
-			ReproductiveRequirement reproductiveRequirement = mob.reproductiveRequirement();
-
-			groups.computeIfAbsent(reproductiveRequirement, _ -> new ArrayList<>());
-			groups.get(reproductiveRequirement).add(mob.name());
-		}
-
-		return groups;
-	}
-
-	public Map<SpawnBehavior, List<String>> groupBySpawnBehavior() {
-		Map<SpawnBehavior, List<String>> groups = new HashMap<>();
-
-		for(Mob mob : mobs) {
-			SpawnBehavior spawnBehavior = mob.spawnBehavior();
-
-			groups.computeIfAbsent(spawnBehavior, _ -> new ArrayList<>());
-			groups.get(spawnBehavior).add(mob.name());
-		}
-
-		return groups;
+	public <T> Map<T, Integer> groupFrecuencies(Map<T, List<String>> group) {
+		return group.entrySet().stream()
+				.map(e -> Map.entry(e.getKey(), e.getValue().size()))
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 }

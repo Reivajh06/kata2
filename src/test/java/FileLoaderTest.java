@@ -13,7 +13,7 @@ void main() {
 	System.out.println(lines);
 	System.out.println();
 
-	MobParser mobParser = new MobParser();
+	MobParser mobParser = new MobParser(',');
 	List<Mob> mobs = mobParser.parseAllLines(lines);
 
 	System.out.println(mobs);
