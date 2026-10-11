@@ -1,8 +1,11 @@
 package reivajh06;
 
+import reivajh06.exceptions.LoaderException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MobLoader {
@@ -12,16 +15,15 @@ public class MobLoader {
 	public List<String> loadCsv(InputStream sourceStream) {
 		List<String> lines = new ArrayList<>();
 
-		try(var inputStream = sourceStream) {
+		try (sourceStream) {
 			String line;
 
 			skipHeader(sourceStream);
 
-			while(!(line = nextLine(sourceStream)).isEmpty()) lines.add(line);
+			while (!(line = nextLine(sourceStream)).isEmpty()) lines.add(line);
 
-		} catch(Exception e) {
-			System.err.println("ERROR WHILE LOADING FILE");
-			e.printStackTrace();
+		} catch (Exception e) {
+			throw new LoaderException("Error while loading csv");
 		}
 
 		return lines;

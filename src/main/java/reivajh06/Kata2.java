@@ -1,12 +1,11 @@
 package reivajh06;
 
 import reivajh06.model.Mob;
-import reivajh06.writers.ConsoleWriter;
-import reivajh06.writers.MobWriter;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class Kata2 {
@@ -27,9 +26,10 @@ public class Kata2 {
 		var x = statistics.filterMobs(mob -> mob.debutDate().getYear() == 2011);
 		var y = statisticsByteArray.filterMobs(mob -> mob.debutDate().getYear() == 2011);
 
-		MobWriter mobWriter = new ConsoleWriter();
+		MobWriter mobWriter = new MobWriter(System.out);
 
-		mobWriter.write(x);
-		mobWriter.write(y);
+		mobWriter.write(x)
+				.write(y);
+
 	}
 }
