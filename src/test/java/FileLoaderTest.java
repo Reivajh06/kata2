@@ -1,7 +1,7 @@
 import reivajh06.MobParser;
 import reivajh06.MobsAnalyzer;
 import reivajh06.loaders.FileCSVMobLoader;
-import reivajh06.loaders.MobLoader;
+import reivajh06.MobLoader;
 import reivajh06.model.BehaviorType;
 import reivajh06.model.Mob;
 

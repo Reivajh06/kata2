@@ -1,29 +1,35 @@
 package reivajh06;
 
-import reivajh06.loaders.FileCSVMobLoader;
-import reivajh06.loaders.MobLoader;
 import reivajh06.model.Mob;
 import reivajh06.writers.ConsoleWriter;
 import reivajh06.writers.MobWriter;
 
-import java.io.File;
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class Kata2 {
 
-	static void main() {
-		MobLoader mobLoader = new FileCSVMobLoader(new File("src/main/resources/minecraft_mobs.csv"));
-		List<String> lines = mobLoader.loadCsv();
-		System.out.println(lines);
+	static void main() throws FileNotFoundException {
+		MobLoader mobLoader = new MobLoader();
+
+		List<String> lines = mobLoader.loadCsv(new FileInputStream("src/main/resources/minecraft_mobs.csv"));
+		List<String> linesByteArray = mobLoader.loadCsv(new ByteArrayInputStream(CachedMobsCsv.CACHED_MOBS_CSV.getBytes()));
+
 		MobParser parser = new MobParser(',');
 
 		List<Mob> mobs = parser.parseAllLines(lines);
+		List<Mob> mobsByteArray = parser.parseAllLines(linesByteArray);
 		MobsAnalyzer statistics = new MobsAnalyzer(mobs);
+		MobsAnalyzer statisticsByteArray = new MobsAnalyzer(mobsByteArray);
 
 		var x = statistics.filterMobs(mob -> mob.debutDate().getYear() == 2011);
+		var y = statisticsByteArray.filterMobs(mob -> mob.debutDate().getYear() == 2011);
 
 		MobWriter mobWriter = new ConsoleWriter();
 
-		mobWriter.write(mobs);
+		mobWriter.write(x);
+		mobWriter.write(y);
 	}
 }
