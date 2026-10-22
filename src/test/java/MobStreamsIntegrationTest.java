@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Test;
 import reivajh06.*;
+import reivajh06.loaders.FileMobLoader;
 import reivajh06.model.BehaviorType;
 import reivajh06.model.Mob;
+import reivajh06.MobWriter;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -22,7 +24,7 @@ class MobStreamsIntegrationTest {
     void loadsParsesAnalyzesAndWritesUsingBufferedStreams() throws IOException {
         var input = new BufferedInputStream(new ByteArrayInputStream(StreamTestData.csvBytes()));
 
-        List<String> lines = new MobLoader().loadCsv(input);
+        List<String> lines = new FileMobLoader().loadCsv(input);
         List<Mob> mobs = new MobParser(",").parseAllLines(lines);
         MobsAnalyzer analyzer = new MobsAnalyzer(mobs);
         Map<BehaviorType, Integer> frequencies = analyzer.groupFrequencies(analyzer.groupBy(Mob::behaviorType));

@@ -7,10 +7,13 @@ import reivajh06.model.SpawnBehavior;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MobParser {
+
+	private static final int MINCOLUMNS = 8;
 
 	private final String delimiter;
 
@@ -18,14 +21,33 @@ public class MobParser {
 		this.delimiter = delimiter;
 	}
 
-	public List<Mob> parseAllLines(Collection<String> lines) {
-		return lines.stream()
-				.map(this::parseLine)
-				.toList();
+	public ParseResult parseAllLines(List<String> lines) {
+		List<Mob> mobs = new ArrayList<>();
+		List<ParseError> errors = new ArrayList<>();
+
+		for(int i = 0; i < lines.size(); i++) {
+			String line = lines.get(i);
+			int nLine = i + 1;
+
+			if(line.isEmpty()) continue;
+
+			Optional<Mob> parseResult = parseLine(line);
+
+			if(parseResult.isEmpty()) {
+				errors.add(new ParseError(nLine, line, parsingErrorMessage(nLine, line)));
+				continue;
+			}
+
+			mobs.add(parseResult.get());
+		}
+
+		return new ParseResult(mobs, errors);
 	}
 
-	public Mob parseLine(String line) {
-		String[] mobDetails = line.split(delimiter);
+	public Optional<Mob> parseLine(String line) {
+		String[] mobDetails = line.split(delimiter, -1);
+
+		if(mobDetails.length < MINCOLUMNS) return Optional.empty();
 
 		int id = Integer.parseInt(mobDetails[0]);
 
@@ -46,7 +68,7 @@ public class MobParser {
 				ReproductiveRequirement.NONE
 				: ReproductiveRequirement.valueOf(mobDetails[8].trim().replace(" ", "_").toUpperCase());
 
-		return new Mob(
+		return Optional.of(new Mob(
 				id,
 				name,
 				behaviorType,
@@ -56,6 +78,10 @@ public class MobParser {
 				debutDate,
 				version,
 				reproductiveRequirement
-		);
+		));
+	}
+
+	private String parsingErrorMessage(int nLine, String line) {
+		return "Parsing error at line %s: %s".formatted(nLine, line);
 	}
 }

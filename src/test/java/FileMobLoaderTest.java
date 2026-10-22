@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import reivajh06.CachedMobsCsv;
-import reivajh06.MobLoader;
+import reivajh06.loaders.FileMobLoader;
 import reivajh06.exceptions.LoaderException;
 
 import java.io.BufferedInputStream;
@@ -21,9 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class MobLoaderTest {
+class FileMobLoaderTest {
 
-    private final MobLoader loader = new MobLoader();
+    private final FileMobLoader loader = new FileMobLoader();
 
     @TempDir
     Path tempDir;

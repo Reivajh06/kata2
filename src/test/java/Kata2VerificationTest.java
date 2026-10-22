@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import reivajh06.CachedMobsCsv;
-import reivajh06.MobLoader;
+import reivajh06.loaders.FileMobLoader;
 import reivajh06.MobWriter;
 import reivajh06.exceptions.LoaderException;
 import reivajh06.model.BehaviorType;
@@ -128,7 +128,7 @@ class Kata2VerificationTest {
     @Test
     void missingClasspathResourceRaisesLoaderException() {
         InputStream missingResource = getClass().getResourceAsStream("/does-not-exist.csv");
-        assertThrows(LoaderException.class, () -> new MobLoader().loadCsv(missingResource));
+        assertThrows(LoaderException.class, () -> new FileMobLoader().loadCsv(missingResource));
     }
 
     @Test
@@ -140,7 +140,7 @@ class Kata2VerificationTest {
             }
         };
 
-        LoaderException exception = assertThrows(LoaderException.class, () -> new MobLoader().loadCsv(failing));
+        LoaderException exception = assertThrows(LoaderException.class, () -> new FileMobLoader().loadCsv(failing));
         assertInstanceOf(IOException.class, exception.getCause(),
                 "LoaderException should keep the original IOException as its cause");
     }
@@ -151,7 +151,7 @@ class Kata2VerificationTest {
     void emptyFileProducesEmptySummary() throws IOException {
         Path empty = Files.createFile(tempDir.resolve("empty.csv"));
 
-        assertTrue(new MobLoader().loadCsv(new FileInputStream(empty.toFile())).isEmpty());
+        assertTrue(new FileMobLoader().loadCsv(new FileInputStream(empty.toFile())).isEmpty());
         assertEquals("", StreamTestData.summaryOf(new FileInputStream(empty.toFile())));
     }
 

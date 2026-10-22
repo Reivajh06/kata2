@@ -1,4 +1,4 @@
-import reivajh06.MobLoader;
+import reivajh06.loaders.FileMobLoader;
 import reivajh06.MobParser;
 import reivajh06.MobsAnalyzer;
 import reivajh06.model.BehaviorType;
@@ -41,7 +41,7 @@ final class StreamTestData {
     }
 
     static Map<BehaviorType, Integer> frequenciesOf(InputStream input) {
-        List<String> lines = new MobLoader().loadCsv(input);
+        List<String> lines = new FileMobLoader().loadCsv(input);
         List<Mob> mobs = new MobParser(",").parseAllLines(lines);
         MobsAnalyzer analyzer = new MobsAnalyzer(mobs);
         return analyzer.groupFrequencies(analyzer.groupBy(Mob::behaviorType));

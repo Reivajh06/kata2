@@ -1,35 +1,26 @@
-package reivajh06;
-
-import reivajh06.exceptions.LoaderException;
+package reivajh06.loaders;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MobLoader {
+public interface Loader {
 
-	private static final int EOF = -1;
+	int EOF = -1;
 
-	public List<String> loadCsv(InputStream sourceStream) {
+	List<String> load();
+
+	default List<String> load(InputStream sourceStream) throws IOException {
 		List<String> lines = new ArrayList<>();
 
 		try (sourceStream) {
 			String line;
 
-			skipHeader(sourceStream);
-
 			while (!(line = nextLine(sourceStream)).isEmpty()) lines.add(line);
-
-		} catch (Exception e) {
-			throw new LoaderException("Error while loading csv");
 		}
 
 		return lines;
-	}
-
-	private void skipHeader(InputStream inputStream) throws IOException {
-		nextLine(inputStream);
 	}
 
 	private String nextLine(InputStream inputStream) throws IOException {
@@ -46,6 +37,6 @@ public class MobLoader {
 			line.append((char)byteRead);
 		}
 
-		return line.toString();
+		return line.toString().replace("\r", "");
 	}
 }
