@@ -25,7 +25,7 @@ public class MobWriter implements Closeable {
 			outputStream.write(bytes);
 
 		} catch(IOException e) {
-			throw new WriterException("Error while writing data to destination");
+			throw new WriterException("Error while writing data to destination", e);
 		}
 
 		return this;

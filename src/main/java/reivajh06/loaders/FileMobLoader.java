@@ -19,7 +19,9 @@ public class FileMobLoader implements Loader {
 	public List<String> load() {
 		try {
 			List<String> load = load(new FileInputStream(file));
-			load.removeFirst();
+
+			if(!load.isEmpty()) load.removeFirst();
+
 			return load;
 
 		} catch (IOException e) {
