@@ -17,7 +17,7 @@ public class URLMobLoader implements Loader {
 		try {
 			this.url = URI.create(url).toURL();
 
-		} catch (MalformedURLException e) {
+		} catch (Exception e) {
 			throw new LoaderException("Invalid url: %s".formatted(url), e);
 		}
 	}
