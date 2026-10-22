@@ -5,6 +5,7 @@ import reivajh06.model.Mob;
 import reivajh06.model.ReproductiveRequirement;
 import reivajh06.model.SpawnBehavior;
 
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -45,28 +46,41 @@ public class MobParser {
 	}
 
 	public Optional<Mob> parseLine(String line) {
-		String[] mobDetails = line.split(delimiter, -1);
+		int id;
+		String name;
+		BehaviorType behaviorType;
+		SpawnBehavior spawnBehavior;
+		int healthPoints;
+		int maxDamage;
+		LocalDate debutDate;
+		String version;
+		ReproductiveRequirement reproductiveRequirement;
 
-		if(mobDetails.length < NFIELDS) return Optional.empty();
+		try {
+			String[] mobDetails = line.split(delimiter, -1);
 
-		int id = Integer.parseInt(mobDetails[0]);
+			if (mobDetails.length < NFIELDS) return Optional.empty();
 
-		String name = mobDetails[1].trim();
-		BehaviorType behaviorType = BehaviorType.valueOf(mobDetails[2].trim().replace(" ", "_").toUpperCase());
-		SpawnBehavior spawnBehavior = SpawnBehavior.valueOf(mobDetails[3].trim().replace(" ", "_").toUpperCase());
+			id = Integer.parseInt(mobDetails[0]);
 
-		int healthPoints = Integer.parseInt(mobDetails[4].trim());
-		int maxDamage = mobDetails[5].isBlank() ? 0 : Integer.parseInt(mobDetails[5].trim());
+			name = mobDetails[1].trim();
+			behaviorType = parseBehavior(mobDetails[2]);
+			spawnBehavior = parseSpawnBehavior(mobDetails[3].trim().replace(" ", "_"));
 
-		String[] date = mobDetails[6].substring(0, 10).split("-");
+			healthPoints = Integer.parseInt(mobDetails[4].trim());
+			maxDamage = mobDetails[5].isBlank() ? 0 : Integer.parseInt(mobDetails[5].trim());
 
-		LocalDate debutDate = LocalDate.of(Integer.parseInt(date[0]), Month.of(Integer.parseInt(date[1])), Integer.parseInt(date[2]));
+			debutDate = parseDebutDate(mobDetails[6]);
 
-		String version = mobDetails[7].trim();
+			version = mobDetails[7].trim();
 
-		ReproductiveRequirement reproductiveRequirement = mobDetails.length == 8 || mobDetails[8].isBlank() ?
-				ReproductiveRequirement.NONE
-				: ReproductiveRequirement.valueOf(mobDetails[8].trim().replace(" ", "_").toUpperCase());
+			reproductiveRequirement = mobDetails[8].isBlank() ?
+					ReproductiveRequirement.NONE
+					: parseReproductiveRequirement(mobDetails[8].trim().replace(" ", "_"));
+
+		} catch(Exception e) {
+			return Optional.empty();
+		}
 
 		return Optional.of(new Mob(
 				id,
@@ -79,6 +93,24 @@ public class MobParser {
 				version,
 				reproductiveRequirement
 		));
+	}
+
+	private BehaviorType parseBehavior(String field) {
+		return BehaviorType.valueOf(field.toUpperCase());
+	}
+
+	private SpawnBehavior parseSpawnBehavior(String field) {
+		return SpawnBehavior.valueOf(field.toUpperCase());
+	}
+
+	private LocalDate parseDebutDate(String field) {
+		String[] date = field.substring(0, 10).split("-");
+
+		return LocalDate.of(Integer.parseInt(date[0]), Month.of(Integer.parseInt(date[1])), Integer.parseInt(date[2]));
+	}
+
+	private ReproductiveRequirement parseReproductiveRequirement(String field) {
+		return ReproductiveRequirement.valueOf(field.toUpperCase());
 	}
 
 	private String parsingErrorMessage(int nLine, String line) {
