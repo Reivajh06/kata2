@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class MobParser {
 
-	private static final int MINCOLUMNS = 8;
+	private static final int NFIELDS = 9;
 
 	private final String delimiter;
 
@@ -47,7 +47,7 @@ public class MobParser {
 	public Optional<Mob> parseLine(String line) {
 		String[] mobDetails = line.split(delimiter, -1);
 
-		if(mobDetails.length < MINCOLUMNS) return Optional.empty();
+		if(mobDetails.length < NFIELDS) return Optional.empty();
 
 		int id = Integer.parseInt(mobDetails[0]);
 
