@@ -23,7 +23,7 @@ public class FileMobLoader implements Loader {
 			return load;
 
 		} catch (IOException e) {
-			throw new LoaderException("Error while trying to load mob source file of path: %s".formatted(file.getAbsolutePath()));
+			throw new LoaderException("Error while trying to load mob source file of path: %s".formatted(file.getAbsolutePath()), e);
 		}
 	}
 }

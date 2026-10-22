@@ -6,7 +6,7 @@ import reivajh06.loaders.URLMobLoader;
 public class Kata2 {
 
 	static void main() {
-		Loader loader = new URLMobLoader("https://raw.githubusercontent.com/Reivajh06/kata2/main/java/resources/minecraft_mobs.csv");
+		Loader loader = new URLMobLoader("https://raw.githubusercontent.com/Reivajh06/kata2/develop/src/main/resources/minecraft_mobs.csv");
 
 		MobParser mobParser = new MobParser(",");
 

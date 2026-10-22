@@ -18,7 +18,7 @@ public class URLMobLoader implements Loader {
 			this.url = URI.create(url).toURL();
 
 		} catch (MalformedURLException e) {
-			throw new LoaderException("Invalid url: %s".formatted(url));
+			throw new LoaderException("Invalid url: %s".formatted(url), e);
 		}
 	}
 
@@ -30,7 +30,7 @@ public class URLMobLoader implements Loader {
 			return load;
 
 		} catch (IOException e) {
-			throw new LoaderException("Error while trying to load mob source via url: %s".formatted(url));
+			throw new LoaderException("Error while trying to load mob source via url: %s".formatted(url), e);
 		}
 	}
 }
