@@ -28,4 +28,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.4</version>
+                <configuration>
+                    <mainClass>reivajh06.Kata2</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
