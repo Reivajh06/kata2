@@ -5,12 +5,11 @@ import reivajh06.exceptions.LoaderException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MobLoader {
 
-	int EOF = -1;
+	private static final int EOF = -1;
 
 	public List<String> loadCsv(InputStream sourceStream) {
 		List<String> lines = new ArrayList<>();

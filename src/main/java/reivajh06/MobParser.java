@@ -12,9 +12,9 @@ import java.util.List;
 
 public class MobParser {
 
-	private final char delimiter;
+	private final String delimiter;
 
-	public MobParser(char delimiter) {
+	public MobParser(String delimiter) {
 		this.delimiter = delimiter;
 	}
 
@@ -25,7 +25,7 @@ public class MobParser {
 	}
 
 	public Mob parseLine(String line) {
-		String[] mobDetails = line.split(String.valueOf(delimiter));
+		String[] mobDetails = line.split(delimiter);
 
 		int id = Integer.parseInt(mobDetails[0]);
 
