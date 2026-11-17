@@ -1,4 +1,4 @@
-package reivajh06.loaders;
+package reivajh06.kata2.loaders;
 
 import java.io.IOException;
 import java.io.InputStream;

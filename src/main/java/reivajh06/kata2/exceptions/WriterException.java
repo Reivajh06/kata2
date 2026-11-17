@@ -1,4 +1,4 @@
-package reivajh06.exceptions;
+package reivajh06.kata2.exceptions;
 
 public class WriterException extends RuntimeException {
 

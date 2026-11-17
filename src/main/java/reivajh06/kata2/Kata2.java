@@ -1,9 +1,9 @@
-package reivajh06;
+package reivajh06.kata2;
 
-import reivajh06.loaders.Loader;
-import reivajh06.loaders.URLMobLoader;
-import reivajh06.model.BehaviorType;
-import reivajh06.model.Mob;
+import reivajh06.kata2.loaders.Loader;
+import reivajh06.kata2.loaders.URLMobLoader;
+import reivajh06.kata2.model.BehaviorType;
+import reivajh06.kata2.model.Mob;
 
 import java.util.Map;
 import java.util.TreeMap;

@@ -1,6 +1,6 @@
-package reivajh06.loaders;
+package reivajh06.kata2.loaders;
 
-import reivajh06.exceptions.LoaderException;
+import reivajh06.kata2.exceptions.LoaderException;
 
 import java.io.File;
 import java.io.FileInputStream;

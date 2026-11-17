@@ -2,10 +2,13 @@ package reivajh06;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import reivajh06.model.BehaviorType;
-import reivajh06.model.Mob;
-import reivajh06.model.ReproductiveRequirement;
-import reivajh06.model.SpawnBehavior;
+import reivajh06.kata2.MobParser;
+import reivajh06.kata2.ParseError;
+import reivajh06.kata2.ParseResult;
+import reivajh06.kata2.model.BehaviorType;
+import reivajh06.kata2.model.Mob;
+import reivajh06.kata2.model.ReproductiveRequirement;
+import reivajh06.kata2.model.SpawnBehavior;
 
 import java.time.LocalDate;
 import java.util.List;

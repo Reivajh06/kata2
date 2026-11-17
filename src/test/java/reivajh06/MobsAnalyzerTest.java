@@ -2,9 +2,10 @@ package reivajh06;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import reivajh06.model.BehaviorType;
-import reivajh06.model.Mob;
-import reivajh06.model.SpawnBehavior;
+import reivajh06.kata2.MobsAnalyzer;
+import reivajh06.kata2.model.BehaviorType;
+import reivajh06.kata2.model.Mob;
+import reivajh06.kata2.model.SpawnBehavior;
 
 import java.util.List;
 import java.util.Map;

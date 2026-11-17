@@ -1,6 +1,6 @@
-package reivajh06;
+package reivajh06.kata2;
 
-import reivajh06.exceptions.WriterException;
+import reivajh06.kata2.exceptions.WriterException;
 
 import java.io.Closeable;
 import java.io.IOException;

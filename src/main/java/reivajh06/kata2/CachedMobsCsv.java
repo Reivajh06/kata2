@@ -1,4 +1,4 @@
-package reivajh06;
+package reivajh06.kata2;
 
 public class CachedMobsCsv {
 

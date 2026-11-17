@@ -3,7 +3,8 @@ package reivajh06;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import reivajh06.exceptions.WriterException;
+import reivajh06.kata2.MobWriter;
+import reivajh06.kata2.exceptions.WriterException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;

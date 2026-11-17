@@ -1,4 +1,4 @@
-package reivajh06.model;
+package reivajh06.kata2.model;
 
 import java.time.LocalDate;
 

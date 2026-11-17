@@ -4,10 +4,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import reivajh06.exceptions.LoaderException;
-import reivajh06.loaders.FileMobLoader;
-import reivajh06.loaders.Loader;
-import reivajh06.loaders.URLMobLoader;
+import reivajh06.kata2.CachedMobsCsv;
+import reivajh06.kata2.MobParser;
+import reivajh06.kata2.MobWriter;
+import reivajh06.kata2.ParseResult;
+import reivajh06.kata2.exceptions.LoaderException;
+import reivajh06.kata2.loaders.FileMobLoader;
+import reivajh06.kata2.loaders.Loader;
+import reivajh06.kata2.loaders.URLMobLoader;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;

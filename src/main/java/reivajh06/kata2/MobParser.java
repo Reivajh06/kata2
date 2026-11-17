@@ -1,11 +1,10 @@
-package reivajh06;
+package reivajh06.kata2;
 
-import reivajh06.model.BehaviorType;
-import reivajh06.model.Mob;
-import reivajh06.model.ReproductiveRequirement;
-import reivajh06.model.SpawnBehavior;
+import reivajh06.kata2.model.BehaviorType;
+import reivajh06.kata2.model.Mob;
+import reivajh06.kata2.model.ReproductiveRequirement;
+import reivajh06.kata2.model.SpawnBehavior;
 
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;

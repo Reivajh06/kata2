@@ -1,6 +1,6 @@
-package reivajh06;
+package reivajh06.kata2;
 
-import reivajh06.model.Mob;
+import reivajh06.kata2.model.Mob;
 
 import java.util.List;
 

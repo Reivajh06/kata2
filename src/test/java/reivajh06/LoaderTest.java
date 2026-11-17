@@ -3,10 +3,10 @@ package reivajh06;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import reivajh06.exceptions.LoaderException;
-import reivajh06.loaders.FileMobLoader;
-import reivajh06.loaders.Loader;
-import reivajh06.loaders.URLMobLoader;
+import reivajh06.kata2.exceptions.LoaderException;
+import reivajh06.kata2.loaders.FileMobLoader;
+import reivajh06.kata2.loaders.Loader;
+import reivajh06.kata2.loaders.URLMobLoader;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
