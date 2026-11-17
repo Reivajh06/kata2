@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Cada caso recorre el flujo completo: Loader (InputStream) -> MobParser -> MobsAnalyzer -> MobWriter (OutputStream).
  */
 @DisplayName("Kata 2: verificación esperada")
-class Kata2VerificationTest {
+class MainVerificationTest {
 
 	private static final String EXPECTED_SUMMARY = new TreeMap<>(TestData.FULL_CSV_FREQUENCIES).toString();
 

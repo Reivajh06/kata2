@@ -50,7 +50,7 @@ mvn clean compile
 mvn compile exec:java
 ```
 
-`Kata2` loads the CSV through a URL from the GitHub repository, so this step uses an internet connection.
+`Main` loads the CSV through a URL from the GitHub repository, so this step uses an internet connection.
 
 Output:
 
@@ -122,7 +122,7 @@ new MobWriter(new FileOutputStream(file));
 new MobWriter(new ByteArrayOutputStream());
 ```
 
-**Connecting the parts.** `Kata2.main` only wires the pieces together, so switching source or destination means changing the object that is created there. Parser and analyzer stay the same:
+**Connecting the parts.** `Main.main` only wires the pieces together, so switching source or destination means changing the object that is created there. Parser and analyzer stay the same:
 
 ```java
 Loader loader = new FileMobLoader(new File("src/main/resources/minecraft_mobs.csv"));
@@ -207,7 +207,7 @@ Verification is automated with **JUnit 5**:
 [INFO] BUILD SUCCESS
 ```
 
-[`Kata2VerificationTest`](src/test/java/reivajh06/Kata2VerificationTest.java) runs the whole pipeline and has one block per case of the assignment's *expected verification* list:
+[`MainVerificationTest`](src/test/java/reivajh06/Kata2VerificationTest.java) runs the whole pipeline and has one block per case of the assignment's *expected verification* list:
 
 | Assignment case | How it is checked |
 |---|---|

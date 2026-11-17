@@ -8,7 +8,7 @@ import reivajh06.kata2.model.Mob;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Kata2 {
+public class Main {
 
 	static void main() {
 		Loader loader = new URLMobLoader("https://raw.githubusercontent.com/Reivajh06/kata2/develop/src/main/resources/minecraft_mobs.csv");

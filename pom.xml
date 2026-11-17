@@ -36,7 +36,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.6.4</version>
                 <configuration>
-                    <mainClass>reivajh06.kata2.Kata2</mainClass>
+                    <mainClass>reivajh06.kata2.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
