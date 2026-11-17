@@ -2,9 +2,7 @@ package reivajh06.loaders;
 
 import reivajh06.exceptions.LoaderException;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.List;
